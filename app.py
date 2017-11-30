@@ -93,15 +93,15 @@ def handle_text_message(event):
         p("text:"+areaName);
 
         pmData, status = airQuality(areaName)
-
+        pmDataStr = str(pmData)
         replyText = ''
-        if len(pmData) > 0:
+        if len(pmDataStr) > 0:
 
-            p("text:"+areaName + '的 pm2.5 為 '+ pmData +'，' + '狀態 : ' + status);
+            p("text:"+areaName + '的 pm2.5 為 '+ pmDataStr +'，' + '狀態 : ' + status);
 
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text='哈囉 '+profile.display_name+' 以下是你要的資料～'+'\n\n'+areaName + '的 pm2.5 為 '+ pmData +'，' + '狀態 : ' + status))
+            TextSendMessage(text='哈囉 '+profile.display_name+' 以下是你要的資料～'+'\n\n'+areaName + '的 pm2.5 為 '+ pmDataStr +'，' + '狀態 : ' + status))
         else:
             line_bot_api.reply_message(
             event.reply_token,
