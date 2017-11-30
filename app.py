@@ -21,20 +21,21 @@ handler = WebhookHandler('bc7b5e36b8caf97d10ec72b98eabc0a7') #Your Channel Secre
 
 def airQuality(areaName):
 
-    url = 'http://opendata2.epa.gov.tw/AQX.json'
+    url = 'https://pm25.lass-net.org/data/last-all-epa.json'
     response = requests.get(url)
     response.raise_for_status()
 
-    airDataList = json.loads(response.text)
+    airDataInfo = json.loads(response.text)
 
-    p(airDataList)
+    p(airDataInfo)
+    airDataList = airDataInfo['feeds']
     status =''
     pmData =''
     for airDict in airDataList:
         dicAreaStr = airDict['SiteName']
         if areaName in dicAreaStr:
             status = airDict['Status'] 
-            pmData = airDict['PM2.5']
+            pmData = airDict['PM2_5']
             break
 
     return pmData, status
