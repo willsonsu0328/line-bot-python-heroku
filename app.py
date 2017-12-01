@@ -76,10 +76,12 @@ def handle_text_message(event):
         p("profile.display_name: "+profile.display_name)
         p("profile.user_id: "+profile.user_id)
         p("profile.picture_url: "+profile.picture_url)
+        if len(profile) == 0:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='加我為朋友，才告訴你唷！'))
     except LineBotApiError as e:
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text='咦～尋找你的資料好像有點問題～'))
+        #line_bot_api.reply_message(
+            #event.reply_token,
+            #TextSendMessage(text='咦～尋找你的資料好像有點問題～'))
 
     #Line 系統token 不回應
     if event.reply_token == '00000000000000000000000000000000':
