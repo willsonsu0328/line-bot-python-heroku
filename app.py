@@ -110,6 +110,25 @@ def handle_text_message(event):
             event.reply_token,
             TextSendMessage(text='沒有找到你要的唷～'))
 
+    if 'shorturl' in text:
+
+        accessToken = '98b31424caa7c30088c2bf1546adc525c9632ced'
+        postURL = "http://api.pics.ee/v1/links/?access_token="+accessToken
+        payload = {'externalId': '22695', 'url': args}
+        header = {'Content-type': 'application/json'}
+        rp = requests.post(postURL, data=json.dumps(payload), headers=header)
+        tempResult = rp.json()
+
+        if 'data' in tempResult:
+            shortURL = tempResult['data']['picseeUrl']
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='哈囉 '+profile.display_name+' 幫你縮好了:'+shortURL))
+        else:
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text='您輸入的可能不是網址或是縮網址服務壞掉了～'))
+
 def p(log):
   print(log) 
   sys.stdout.flush()  
