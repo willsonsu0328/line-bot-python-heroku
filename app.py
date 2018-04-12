@@ -114,7 +114,12 @@ def handle_text_message(event):
 
         accessToken = '98b31424caa7c30088c2bf1546adc525c9632ced'
         postURL = "http://api.pics.ee/v1/links/?access_token="+accessToken
-        payload = {'externalId': '22695', 'url': args}
+
+        allTexts = text.split(' ',1)
+
+        originalURL = allTexts[1]
+
+        payload = {'externalId': '22695', 'url': originalURL}
         header = {'Content-type': 'application/json'}
         rp = requests.post(postURL, data=json.dumps(payload), headers=header)
         tempResult = rp.json()
