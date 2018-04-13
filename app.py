@@ -126,10 +126,9 @@ def handle_text_message(event):
 
         if 'data' in tempResult:
             shortURL = tempResult['data']['picseeUrl']
-            tempURL = shortURL.replace("https", "http", 1)
             line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text='哈囉 '+profile.display_name+' 幫你縮好了:'+tempURL))
+            TextSendMessage(text='哈囉 '+profile.display_name+' 幫你縮好了: '+shortURL))
         else:
             line_bot_api.reply_message(
             event.reply_token,
