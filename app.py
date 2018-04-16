@@ -134,6 +134,30 @@ def handle_text_message(event):
             event.reply_token,
             TextSendMessage(text='您輸入的可能不是網址或是縮網址服務壞掉了～'))
 
+    if 'testinterface' in text:
+
+        message = TemplateSendMessage(
+                  alt_text='Buttons template',
+                  template=ButtonsTemplate(thumbnail_image_url='https://example.com/image.jpg',
+                  title='Menu',
+                  text='Please select',
+                  actions=[PostbackTemplateAction(
+                           label='postback',
+                           text='postback text',
+                           data='action=buy&itemid=1'\
+                           ),
+                           MessageTemplateAction(
+                           label='message',
+                           text='message text'
+                           ),
+                           URITemplateAction(
+                           label='uri',
+                           uri='http://example.com/')
+                           ]
+                           )
+                  )
+        line_bot_api.reply_message(event.reply_token, message)
+
 def p(log):
   print(log) 
   sys.stdout.flush()  
