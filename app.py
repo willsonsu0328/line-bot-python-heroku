@@ -144,7 +144,7 @@ def handle_text_message(event):
                   actions=[PostbackTemplateAction(
                            label='postback',
                            text='postback text',
-                           data='action=buy&itemid=1'\
+                           data='action=buy&itemid=1'
                            ),
                            MessageTemplateAction(
                            label='message',
