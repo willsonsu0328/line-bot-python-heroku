@@ -157,7 +157,7 @@ def handle_text_message(event):
                            )
                   )
 
-        p("postbackData:"+event.postback.data)
+        p("postbackData:"+event.postback.postback.data)
         line_bot_api.reply_message(event.reply_token, message)
 
 def p(log):
