@@ -134,7 +134,7 @@ def handle_text_message(event):
             event.reply_token,
             TextSendMessage(text='您輸入的可能不是網址或是縮網址服務壞掉了～'))
 
-    if 'testinterface' in text:
+    if 'button' in text:
 
         message = TemplateSendMessage(
                   alt_text='Buttons template',
@@ -156,6 +156,8 @@ def handle_text_message(event):
                            ]
                            )
                   )
+
+        p("postbackData:"+event.postback.data)
         line_bot_api.reply_message(event.reply_token, message)
 
 def p(log):
