@@ -10,7 +10,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent, UnfollowEvent, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, PostbackEvent
+    MessageEvent, TextMessage, TextSendMessage, FollowEvent, UnfollowEvent, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, PostbackEvent, ConfirmTemplate
 )
 from linebot.exceptions import LineBotApiError
 
@@ -158,6 +158,26 @@ def handle_text_message(event):
                   )
 
         line_bot_api.reply_message(event.reply_token, message)
+
+    if 'confirm' in text:
+
+        confirm_template_message = TemplateSendMessage(
+                                   alt_text='Confirm template',
+                                   template=ConfirmTemplate(
+                                   text='Are you sure?',
+                                   actions=[PostbackTemplateAction(
+                                            label='postback', 
+                                            text='postback text',
+                                            data='action=buy&itemid=1'
+                                            ),
+                                            MessageTemplateAction(
+                                            label='message', 
+                                            text='message text'
+                                            )
+                                            ]
+                                            )
+                                   )
+        line_bot_api.reply_message(event.reply_token, confirm_template_message)
 
 @handler.add(PostbackEvent)
 def handle_postback(event):
