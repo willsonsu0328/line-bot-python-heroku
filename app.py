@@ -1,5 +1,5 @@
 # encoding: utf-8
-import sys, requests, json
+import sys, requests, json, os
 
 from flask import Flask, request, abort
 
@@ -16,8 +16,12 @@ from linebot.exceptions import LineBotApiError
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('HdDEyTifuEOVJFujW93ez1J6NR5pIeyM9QM/hIfGyM0NJTDh+tfq0JvhtL8ISRk0mFpgrkzqFHwe4rFJv1R6RK58FqUg7jSEXUIv+Q1R0ubjc9MZRGmrIM0D4q64RlzgR6o/hQpTNvSdzOfmRbitwAdB04t89/1O/w1cDnyilFU=') #Your Channel Access Token
-handler = WebhookHandler('bc7b5e36b8caf97d10ec72b98eabc0a7') #Your Channel Secret
+
+LINE_CHANNEL_ACCESSTOKEN = os.environ.get('ChannelAccessToken', None)
+LINE_CHANNEL_SECRET = os.environ.get('ChannelSecret', None)
+
+line_bot_api = LineBotApi(LINE_CHANNEL_ACCESSTOKEN) #Your Channel Access Token
+handler = WebhookHandler(LINE_CHANNEL_SECRET) #Your Channel Secret
 
 def airQuality(areaName):
 
