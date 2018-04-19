@@ -19,6 +19,7 @@ app = Flask(__name__)
 
 LINE_CHANNEL_ACCESSTOKEN = os.environ.get('ChannelAccessToken', None)
 LINE_CHANNEL_SECRET = os.environ.get('ChannelSecret', None)
+PICSEE_ACCESSTOKEN = os.environ.get('PICSEE_ACCESSTOKEN', None)
 
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESSTOKEN) #Your Channel Access Token
 handler = WebhookHandler(LINE_CHANNEL_SECRET) #Your Channel Secret
@@ -116,8 +117,7 @@ def handle_text_message(event):
 
     if 'shorturl' in text:
 
-        accessToken = '98b31424caa7c30088c2bf1546adc525c9632ced'
-        postURL = "http://api.pics.ee/v1/links/?access_token="+accessToken
+        postURL = "http://api.pics.ee/v1/links/?access_token="+PICSEE_ACCESSTOKEN
 
         allTexts = text.split(' ',1)
 
