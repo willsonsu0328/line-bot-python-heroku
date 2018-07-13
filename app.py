@@ -87,7 +87,7 @@ def handle_image_message(event):
     payload = {'path': '/homes/wilson/test1', 'create_parents': False, 'api': 'SYNO.FileStation.Upload','version':'2','method': 'upload' , '_sid': '4d0rYYaVIaH3.14B0MPN268151','filename': imageData}
     header = {'Content-type': 'application/json'}
     rp = requests.post(synologyURL, data=json.dumps(payload), headers=header)
-
+    rp.raise_for_status()
 
 
 @handler.add(MessageEvent, message=TextMessage)
