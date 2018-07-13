@@ -87,9 +87,7 @@ def handle_image_message(event):
     payload = {'path': '/homes/wilson/test1', 'create_parents': True, 'filename': imageData}
     header = {'Content-type': 'application/json'}
     rp = requests.post(synologyURL, data=json.dumps(payload), headers=header)
-    tempResult = rp.json()
 
-    p("synology 回傳: "+tempResult)
 
 
 @handler.add(MessageEvent, message=TextMessage)
