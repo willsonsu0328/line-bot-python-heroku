@@ -86,7 +86,7 @@ def handle_image_message(event):
     synologyURL = 'https://willsonsu0328.tw3.quickconnect.to/webapi/entry.cgi'
     payload = {'path': '/homes/wilson/test1', 'create_parents': False, 'api': 'SYNO.FileStation.Upload','version':'2','method': 'upload' , '_sid': '4d0rYYaVIaH3.14B0MPN268151','filename': imageData}
     header = {'Content-type': 'application/json'}
-    rp = requests.post(synologyURL, data=json.dumps(payload), headers=header)
+    rp = requests.post(synologyURL, data=payload, headers=header)
     rp.raise_for_status()
 
 
@@ -217,5 +217,5 @@ def p(log):
 
 import os
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=os.environ['PORT'], threaded=True)
+    app.run(host='0.0.0.0',port=os.environ['PORT'])
     # app.run()
