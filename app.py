@@ -10,7 +10,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, FollowEvent, UnfollowEvent, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, PostbackEvent, ConfirmTemplate
+    MessageEvent, TextMessage, TextSendMessage, ImageMessage, FollowEvent, UnfollowEvent, TemplateSendMessage, ButtonsTemplate, PostbackTemplateAction, MessageTemplateAction, URITemplateAction, PostbackEvent, ConfirmTemplate
 )
 from linebot.exceptions import LineBotApiError
 
@@ -67,6 +67,12 @@ def callback():
 @handler.add(FollowEvent)
 def follow(event):
     p("follow event.type: "+event.type)
+
+@handler.add(MessageEvent, message=ImageMessage)
+def handle_image_message(event):
+    imageID = event.message.id
+    p("圖片id: "+imageID)
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
