@@ -70,7 +70,14 @@ def follow(event):
 
 @handler.add(MessageEvent, message=ImageMessage)
 def handle_image_message(event):
+
     imageID = event.message.id
+    url = 'https://api.line.me/v2/bot/message/'+imageID+'/content'
+    headers = {'Authorization': 'LINE_CHANNEL_ACCESSTOKEN'}
+    lineContentRequest = requests.get(url, headers=headers)
+
+    conetntInfo = json.loads(lineContentRequest.response.text)
+    p("圖片id: "+conetntInfo)
     p("圖片id: "+imageID)
 
 
