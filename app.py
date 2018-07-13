@@ -86,7 +86,7 @@ def handle_image_message(event):
     header = {'Content-type': 'application/json'}
     rp = requests.post(synologyURL, data=json.dumps(payload), headers=header)
 
-    p("response:"+rp.response.text)
+    p("response:"+rp.text)
 
 
 
