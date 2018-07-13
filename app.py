@@ -79,8 +79,8 @@ def handle_image_message(event):
 
     lineContentRequest = requests.get(url, headers=headers)
 
+    p("圖片response: "+lineContentRequest.json())
     imageData = lineContentRequest.text
-    p("圖片response: "+lineContentRequest.response)
     p("圖片data: "+imageData)
     p("圖片id: "+imageID)
 
