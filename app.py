@@ -76,7 +76,7 @@ def handle_image_message(event):
     headers = {'Authorization': 'LINE_CHANNEL_ACCESSTOKEN'}
     lineContentRequest = requests.get(url, headers=headers)
 
-    conetntInfo = json.loads(lineContentRequest.response.text)
+    conetntInfo = lineContentRequest.text
     p("圖片id: "+conetntInfo)
     p("圖片id: "+imageID)
 
