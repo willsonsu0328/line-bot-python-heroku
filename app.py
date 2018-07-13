@@ -81,11 +81,11 @@ def handle_image_message(event):
     imageData = lineContentRequest.text
     p("圖片id: "+imageID)
 
-    synologyURL = 'https://willsonsu0328.tw3.quickconnect.to/webapi/entry.cgi?api=SYNO.FileStation.Upload&_sid=x2tYerRTLH.xI14B0MPN268151'
+    synologyURL = 'http://willsonsu0328.tw3.quickconnect.to/webapi/entry.cgi?api=SYNO.FileStation.Upload'
     payload = {'path': '/homes/wilson/test1', 'create_parents': True, 'filename': imageData}
     header = {'Content-type': 'application/json'}
     rp = requests.post(synologyURL, data=json.dumps(payload), headers=header)
-    
+
 
 
 @handler.add(MessageEvent, message=TextMessage)
