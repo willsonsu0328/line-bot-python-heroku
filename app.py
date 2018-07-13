@@ -1,5 +1,6 @@
 # encoding: utf-8
 import sys, requests, json, os
+import base64
 
 from flask import Flask, request, abort
 
@@ -79,6 +80,7 @@ def handle_image_message(event):
     lineContentRequest = requests.get(url, headers=headers)
 
     imageData = lineContentRequest.text
+    p("圖片data: "+imageData)
     p("圖片id: "+imageID)
 
     synologyURL = 'https://willsonsu0328.tw3.quickconnect.to/webapi/entry.cgi'
