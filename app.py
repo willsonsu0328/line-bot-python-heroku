@@ -73,11 +73,16 @@ def handle_image_message(event):
 
     imageID = event.message.id
     url = 'https://api.line.me/v2/bot/message/'+imageID+'/content'
+
+    p("圖片url: "+url)
+
     headers = {'Authorization': 'Bearer'+' '+LINE_CHANNEL_ACCESSTOKEN}
+    p("image header: "+headers)
+
     lineContentRequest = requests.get(url, headers=headers)
 
-    conetntInfo = json.loads(lineContentRequest.text)
-    p("圖片response: "+conetntInfo)
+    contentInfo = json.loads(lineContentRequest.text)
+    p("圖片response: "+contentInfo)
     p("圖片id: "+imageID)
 
 
