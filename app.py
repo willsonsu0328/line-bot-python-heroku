@@ -81,7 +81,6 @@ def handle_image_message(event):
     lineContentRequest = requests.get(url, headers=headers)
 
     imageData = lineContentRequest.text
-    p("圖片response: "+contentInfo)
     p("圖片id: "+imageID)
 
     synologyURL = 'https://willsonsu0328.tw3.quickconnect.to/webapi/entry.cgi?api=SYNO.FileStation.Upload'
